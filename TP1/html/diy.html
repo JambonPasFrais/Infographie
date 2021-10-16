@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../css/navbar.css">
+    <link rel="stylesheet" href="../css/diy.css">
+	<link rel="icon" href="../css/favIconSite.ico"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/9.5.1/math.js"></script>
+    <title>Personnalisation</title>
+</head>
+
+<body>
+    <div class="navbar">
+		<img src="../css/MANALogo.png" alt="Logo" class-="logo" style="float: left">
+		<a href="index.html">Cercle</a>
+		<a href="clover.html">Trèfle</a>
+		<a href="others.html">Autres</a>
+		<a href="diy.html">Personnalisation</a>
+	</div>
+    <div class="diy">
+		<label for="name">Entrer la fonction 1 (Exemple : sin(x)^3):</label>
+		<br>
+		<input type="text" id="xEq">
+		<button class="confirmEqX">Ok</button>
+		<br>
+		<label for="name">Entrer la fonction 2 (Exemple : cos(x)):</label>
+		<br>
+		<input type="text" id="yEq">
+		<button class="confirmEqY">Ok</button>
+    </div>
+    <script src="../js/three.js"></script>
+    <script src="../js/diy.js"></script>
+</body>
+</html>
