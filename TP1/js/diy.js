@@ -1,4 +1,4 @@
-/* THREE */
+/* THREE - Commentaires détaillés de cette partie dans le fichier cercle.js*/
 let scene = new THREE.Scene();
 let camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
 
@@ -16,6 +16,8 @@ camera.position.z = 5;
 // tableau de points
 let points = [];
 
+/*Méthode : Pour cette partie bonus, l'utilisateur est invité à rentrer lui même son expression paramétrique pour former une figure.
+Il y a par défaut un cercle mais il sera enlevé dès que l'utilisateur demandera une nouvelle figure. */
 for (let i = 0; i < 2 * Math.PI; i += 0.01) {
     let x = Math.cos(i);
     let y = Math.sin(i);
@@ -30,21 +32,24 @@ scene.add(form);
 
 renderer.render(scene, camera);
 
-/*Use of Mathjs*/
-const parser = math.parser();
-let xEq = "", yEq = "";
+/*Afin de convertir une string en équation algébrique, nous avons utilisé la méthode math.js dont la documentation est disponible ici : https://mathjs.org/ */
+const parser = math.parser();//Un parser permet d'associacier une équation à une fonction. Exemple : x^3 devient f(x) = x^3
+let xEq = "", yEq = "";//les variables que l'utilisateur va changer dans l'input
+//Les inputs
 let inputX = document.getElementById('xEq');
 let inputY = document.getElementById('yEq');
+//Les boutons de validation
 let inputXBtn = document.getElementsByClassName("confirmEqX");
 let inputYBtn = document.getElementsByClassName("confirmEqY");
+//Les listeners
 inputXBtn[0].addEventListener('click', () =>{
     xEq = inputX.value;
-    parser.evaluate('f(x)='+xEq);
-    console.log(xEq);
+    parser.evaluate('f(x)='+xEq);//Utilisation du parser 1
 });
 inputYBtn[0].addEventListener('click', () =>{
     yEq = inputY.value;
-    parser.evaluate('g(x)='+yEq);
+    parser.evaluate('g(x)='+yEq);//Utilisation du parser 2
+    /*Création de la figure, même méthode que dans other.js mais avec les formules que l'utilisateur a rentré*/
     removeEntity(form);
         //Clear
         points = [];
@@ -57,7 +62,7 @@ inputYBtn[0].addEventListener('click', () =>{
         updateFigure(points);
 });
 
-/*Functions*/
+/*Fonctions identiques à others.js - Utilisation détaillée dans ce fichier*/
 
 let updateFigure = function (points) {
     let geometry = new THREE.BufferGeometry().setFromPoints(points);
