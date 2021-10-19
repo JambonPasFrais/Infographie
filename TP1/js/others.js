@@ -42,15 +42,18 @@ for (let i = 0; i < buttonTab.length; i++) {
 }
 
 /*Fonctions utilisées pour cette page*/
-//ChoiceEvent est la fonction appelée chaque fois que l'utilisateur clique sur un bouton. 
-let choiceEvent = function (text) {
-    /*Le changement de figure se passe toujours de la même manière : 
+
+/*ChoiceEvent est la fonction appelée chaque fois que l'utilisateur clique sur un bouton. 
+Le changement de figure se passe toujours de la même manière : 
     - Choix de la figure
     - Nettoyage du tableau de points pour en accueillir des nouveaux
     - Nettoyage de la scène pour accueillir des nouveaux graphiques
     - Utilisiation de la formule adéquate pour la figure
     - Mis à jour de la position caméra
     - Création de la figure sur la scène */
+
+let choiceEvent = function (text) {
+    
     if (text == "Cœur") {
         removeEntity(form);
         //Clear
@@ -93,22 +96,23 @@ let choiceEvent = function (text) {
         camera.position.z = 45;
         updateFigure(points);
     }
+    //Au cas où il y a une erreur dans le texte des boutons
     else {
         console.log("Error");
     }
 }
 
-//updateFigure va recréer une géométrie et une figure en fonction du tableau de points passés en paramètre
+//updateFigure va recréer une géométrie et une figure en fonction du tableau de points passé en paramètre
 let updateFigure = function (points) {
     let geometry = new THREE.BufferGeometry().setFromPoints(points);
     let form = new THREE.Line(geometry, material);
-    form.name = "figure";
+    form.name = "figure";//Encore une fois important de nommer la figure
     scene.add(form);
 }
 
 //removeEntity va supprimer l'objet créé précédemment soit le coeur, le cercle, le nombre d'or ou la fleur
 function removeEntity(object) {
-    let selectedObject = scene.getObjectByName(object.name);//Accès à l'objet par son nom ! (Utilité de le définir au début ligne 31 et à chaque nouvelle création dans updateFigure)
+    let selectedObject = scene.getObjectByName(object.name);//Accès à l'objet par son nom ! D'où l'utilité de le définir au début ligne 31 et à chaque nouvelle création dans updateFigure
     scene.remove(selectedObject);
 }
 

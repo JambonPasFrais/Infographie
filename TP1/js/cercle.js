@@ -7,7 +7,7 @@ const renderer = new THREE.WebGLRenderer(); //Outil qui génère les graphiques 
 renderer.setSize( window.innerWidth, window.innerHeight );//Adaptation de ce rendu à la taille de la fenêtre
 document.body.appendChild( renderer.domElement ); //création de la scène
 
-/*Nous avons cependant modifié laa méthode "PointBasicMaterial" car elle n'offrait une bonne netteté à nos figures*/
+/*Nous avons cependant modifié la méthode "PointBasicMaterial" car elle n'offrait pas une bonne nettetée à nos figures*/
 const material = new THREE.LineBasicMaterial({
     color: 0xd9d397//Couleur de notre cercle
 });

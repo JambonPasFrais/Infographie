@@ -32,7 +32,7 @@ scene.add(form);
 
 renderer.render(scene, camera);
 
-/*Afin de convertir une string en équation algébrique, nous avons utilisé la méthode math.js dont la documentation est disponible ici : https://mathjs.org/ */
+/*Afin de convertir une string en équation algébrique, nous avons utilisé la librairie math.js */
 const parser = math.parser();//Un parser permet d'associacier une équation à une fonction. Exemple : x^3 devient f(x) = x^3
 let xEq = "", yEq = "";//les variables que l'utilisateur va changer dans l'input
 //Les inputs
@@ -41,7 +41,7 @@ let inputY = document.getElementById('yEq');
 //Les boutons de validation
 let inputXBtn = document.getElementsByClassName("confirmEqX");
 let inputYBtn = document.getElementsByClassName("confirmEqY");
-//Les listeners
+//Les listeners qui vont stocker ce qu'a mis l'utiisateur dans l'input dans les variables xEq ou yEq
 inputXBtn[0].addEventListener('click', () =>{
     xEq = inputX.value;
     parser.evaluate('f(x)='+xEq);//Utilisation du parser 1
@@ -49,7 +49,7 @@ inputXBtn[0].addEventListener('click', () =>{
 inputYBtn[0].addEventListener('click', () =>{
     yEq = inputY.value;
     parser.evaluate('g(x)='+yEq);//Utilisation du parser 2
-    /*Création de la figure, même méthode que dans other.js mais avec les formules que l'utilisateur a rentré*/
+    /*Création de la figure, même méthode que dans others.js mais avec les formules que l'utilisateur a rentré*/
     removeEntity(form);
         //Clear
         points = [];
@@ -62,7 +62,7 @@ inputYBtn[0].addEventListener('click', () =>{
         updateFigure(points);
 });
 
-/*Fonctions identiques à others.js - Utilisation détaillée dans ce fichier*/
+/*Fonctions identiques à others.js, les commentaires y sont détaillés*/
 
 let updateFigure = function (points) {
     let geometry = new THREE.BufferGeometry().setFromPoints(points);
