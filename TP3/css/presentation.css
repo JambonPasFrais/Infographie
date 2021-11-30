@@ -1,0 +1,104 @@
+*{
+    margin: 0;
+    padding: 0;
+    outline: none;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+body{
+    background: #1f1d21;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    height: 100vh;
+}
+.one{
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+}
+
+.one span{
+    text-transform: uppercase;
+    display: block;
+}
+.one img{
+    width: 10%;
+    height: auto;
+    vertical-align: middle;
+}
+.text1{
+    color: white;
+    font-size: 60px;
+    font-weight: bold;
+    letter-spacing: 8px;
+    margin-bottom: 20px;
+    background: #1f1d21;
+    position: relative;
+    animation: text 3s 1;
+
+}
+.text2{
+    font-size: 30px;
+    color: #E9E3CA;
+    margin-bottom: 25px;
+}
+
+@keyframes text{
+    0%{
+        color: #1f1d21;
+        letter-spacing: 35px;
+        margin-bottom: -60px;
+    }
+
+    30% {
+        margin-bottom: -60px;
+    }
+
+    85%{
+        letter-spacing: 8px;
+        margin-bottom: -60px;
+    }
+}
+
+.animate__animated.animate__fadeIn{
+    --animate-duration: 5s;
+}
+
+/* Bouton de Connexion*/
+.btn-connexion{
+    margin-top: 5px;
+    background: none;
+    width: 250px;
+    height: 60px;
+    border: 4px solid #E9E3CA;
+    font-size: 20px;
+    font-weight: bold;
+    color: #E9E3CA;
+    transition: .3s linear;
+    cursor: pointer;
+    position: relative;
+    border-radius: 5px;
+}
+
+/* Annimation bouton connexion */
+.btn-connexion:hover{
+    color: #1f1d21;
+}
+.btn-connexion::before{
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 55px;
+    top: 0;
+    left: 0;
+    background-color: #E9E3CA;
+    z-index: -1;
+    transition: .3s linear;
+}
+.btn-connexion:hover::before{
+    width: 245px;
+}
