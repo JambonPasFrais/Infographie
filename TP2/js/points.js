@@ -1,18 +1,37 @@
 /*Variable*/
 let coordX, coordY = 0;
-let pointsArray = [];
+let pointsArray = [
+    new THREE.Vector2(0, 0),
+    new THREE.Vector2(20, 20),
+    new THREE.Vector2(-10, -30)
+];
 /* DOM Manipulation */
 let inputX = document.getElementById('coordX');
 let inputY = document.getElementById('coordY');
 let confirmBtn = document.getElementById('confirmCoord');
 let table = document.getElementById('points');
-let divExample = document.getElementsByClassName('exampleText');
-/*Listener*/
+let inputTabExample = document.getElementsByClassName('inputTab');
+let btnTabExample = document.getElementsByClassName('btnTab');
+/*Listeners*/
 confirmBtn.addEventListener('click', () => {//Création de listener pour le bouton "VALIDER" des coordonnées
     confirmCoordEvent();
     inputX.value = "";
     inputY.value = "";
 });
+
+for (let i = 0; i < btnTabExample.length; i++){
+    btnTabExample[i].addEventListener('click', () => {
+        if (inputTabExample[i].value == ""){//Si jamais l'utilisateur n'a pas entré de valeur, on annule son action
+            alert("Merci d'entrer une coordonnée valide");
+            return;
+        }
+        //Si l'utilisateur arrive jusqu'ici, il a bien rempli l'input d'une valeur et les mises à jour vont se faire :
+        inputTabExample[i].placeholder = inputTabExample[i].value; //On remplace le placeholder par ce que l'utilisateur a entré
+        inputTabExample[i].value = "";//On supprime ce qui a été entré pour laisser le champ libre au place holder
+        updateJsTabAfterCoordChange();//On met à jour le tableau en JAVASCRIPT
+    });
+}
+
 /*Functions*/
 
 //Confirm Coord Event est utilisée lorsqu'un utilisateur rentre une nouvelle coordoonée dans le tableau de point. Elle vérifie les coordonnées de l"utilisateur puis modifie le tableau
@@ -46,8 +65,6 @@ function updateTab() {
     //Création des boutons "modifier" dans les cellules du tableau
     createButton(table, 1, 0);//création d'un bouton dans le tableau "table", à la ligne "1" et à la cellule "0"
     createButton(table, 1, 1);//création d'un bouton dans le tableau "table", à la ligne "1" et à la cellule "1"  
-
-    divExample[0].style.display = "none";
 
     //Appel de la fonction qui met à jour Three.js pour représenter le Polygone de contrôle et la courbe de Bézier
     theScene(pointsArray);
