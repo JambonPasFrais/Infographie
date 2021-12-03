@@ -6,57 +6,42 @@
     <link rel="stylesheet" href="../css/index.css">
     <link rel="icon" href="../css/favIconSite.ico" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
-    <title>TP2</title>
+    <title>TP n°2</title>
 </head>
 
 <body class="animate__animated animate__fadeIn">
-    <div class=" col-4 col-s-4 title">
-        <h1>TP n°2 - Courbe de Bézier by <img src="../css/MANALogo.png"></h1>
-    </div>
-    <div class="createPoints col-2 col-s-4">
-        <div class="allHtmlCreatePoints">
-            Ajouter des points :
-            <br>
-            <input type="text" id="coordX" placeholder="X">
-            <br>
-            <input type="text" id="coordY" placeholder="Y">
-            <br>
-            <button id="confirmCoord">Valider</button>
+    <div class="generalPoints col-3 col-s-12">
+        <div class="title">
+            <h2>TP n°2 : Courbes de Bezier<br>by <img src="../css/MANALogo.png"></h2>
         </div>
-    </div>
-    <div class="tabOfPoints col-4 col-s-2">
-        <table id="points">
-            <thead>
-                <tr>
-                    <th>X</th>
-                    <th>Y</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td><input type="text" class="inputTab" placeholder="-10"><button class="btnTab">Modifier</button>
-                    </td>
-                    <td><input type="text" class="inputTab" placeholder="-30"><button class="btnTab">Modifier</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td><input type="text" class="inputTab" placeholder="20"><button class="btnTab">Modifier</button>
-                    </td>
-                    <td><input type="text" class="inputTab" placeholder="20"><button class="btnTab">Modifier</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td><input type="text" class="inputTab" placeholder="0"><button class="btnTab">Modifier</button>
-                    </td>
-                    <td><input type="text" class="inputTab" placeholder="0"><button class="btnTab">Modifier</button>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+        <div class="createPoints">
+            <div class="allHtmlCreatePoints">
+                Ajouter des points :
+                <br>
+                <input type="text" id="coordX" placeholder="X">
+                <br>
+                <input type="text" id="coordY" placeholder="Y">
+                <br>
+                <button id="confirmCoord">Valider</button>
+            </div>
+        </div>
+        <div class="tabOfPoints">
+            <table id="points">
+                <thead>
+                    <tr>
+                        <th>X</th>
+                        <th>Y</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
     </div>
 </body>
 <script src="../js/three.js"></script>
 <script src="../js/points.js"></script>
 <script src="../js/bezier.js"></script>
+<script src="../js/createExemple.js"></script>
 
 </html>

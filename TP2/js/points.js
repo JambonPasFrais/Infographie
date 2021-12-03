@@ -1,36 +1,17 @@
 /*Variable*/
 let coordX, coordY = 0;
-let pointsArray = [
-    new THREE.Vector2(0, 0),
-    new THREE.Vector2(20, 20),
-    new THREE.Vector2(-10, -30)
-];
+let pointsArray = [];
 /* DOM Manipulation */
 let inputX = document.getElementById('coordX');
 let inputY = document.getElementById('coordY');
 let confirmBtn = document.getElementById('confirmCoord');
-let table = document.getElementById('points');
-let inputTabExample = document.getElementsByClassName('inputTab');
-let btnTabExample = document.getElementsByClassName('btnTab');
+let table = document.getElementById('points');;
 /*Listeners*/
 confirmBtn.addEventListener('click', () => {//Création de listener pour le bouton "VALIDER" des coordonnées
     confirmCoordEvent();
     inputX.value = "";
     inputY.value = "";
 });
-
-for (let i = 0; i < btnTabExample.length; i++){
-    btnTabExample[i].addEventListener('click', () => {
-        if (inputTabExample[i].value == ""){//Si jamais l'utilisateur n'a pas entré de valeur, on annule son action
-            alert("Merci d'entrer une coordonnée valide");
-            return;
-        }
-        //Si l'utilisateur arrive jusqu'ici, il a bien rempli l'input d'une valeur et les mises à jour vont se faire :
-        inputTabExample[i].placeholder = inputTabExample[i].value; //On remplace le placeholder par ce que l'utilisateur a entré
-        inputTabExample[i].value = "";//On supprime ce qui a été entré pour laisser le champ libre au place holder
-        updateJsTabAfterCoordChange();//On met à jour le tableau en JAVASCRIPT
-    });
-}
 
 /*Functions*/
 
@@ -66,6 +47,10 @@ function updateTab() {
     createButton(table, 1, 0);//création d'un bouton dans le tableau "table", à la ligne "1" et à la cellule "0"
     createButton(table, 1, 1);//création d'un bouton dans le tableau "table", à la ligne "1" et à la cellule "1"  
 
+    //Création des croix à côté des cases pour pouvoir supprimer des cases
+    createDeleteCross(table, 1, 0);
+    createDeleteCross(table, 1, 1);
+
     //Appel de la fonction qui met à jour Three.js pour représenter le Polygone de contrôle et la courbe de Bézier
     theScene(pointsArray);
 }
@@ -87,6 +72,15 @@ function createButton(tab, row, cell){
     addListenerButtonTab(tab.rows[row].cells[cell]);//Ajout d'un listeners sur ce bouton
 }
 
+//Create Delete Cross est utilisée pour créer des images "croix" en html. Ces images vont permettre de supprimer une ligne du tableau
+function createDeleteCross(tab, row, cell){
+    let cross = document.createElement("img");//Création image en HTML
+    cross.src = "../css/close-icon.png";//Source de l'image croix dans nos fichiers
+    cross.className = "crossTab";//Class de la croix
+    tab.rows[row].cells[cell].appendChild(cross);//Ajout de la croix dans l'HTML
+    addListenerDeleteCrossTab(tab.rows[row].cells[cell]);//Appel de la fonction listener
+}
+
 //Add Listener Button Tab est utilisée pour ajouter un listener sur un bouton d'une cellule du tableau. C'est cette fonction qui va rendre le bouton "modifier" utile 
 function addListenerButtonTab(cell){
     cell.children[1].addEventListener('click', () => {//Ajout d'un listener de type "click"
@@ -98,6 +92,15 @@ function addListenerButtonTab(cell){
         cell.children[0].placeholder = cell.children[0].value; //On remplace le placeholder par ce que l'utilisateur a entré
         cell.children[0].value = "";//On supprime ce qui a été entré pour laisser le champ libre au place holder
         updateJsTabAfterCoordChange();//On met à jour le tableau en JAVASCRIPT
+    });
+}
+
+//Add listener Delete Cross Tab est utilisée pour le clique de l'utilisateur sur la croix. Elle va supprimer la ligne sélectionnée.
+function addListenerDeleteCrossTab(cell){
+    cell.children[2].addEventListener('click', (oEvent)=> {
+        let oEleBt = oEvent.currentTarget, oTr = oEleBt.parentNode.parentNode;//Repérage de la ligne
+        oTr.remove();//Suppression de la ligne
+        updateJsTabAfterCoordChange();//Mise à jour du tableau JS et donc de la figure                 
     });
 }
 
