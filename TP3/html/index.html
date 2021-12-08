@@ -6,12 +6,19 @@
     <link rel="stylesheet" href="../css/index.css">
     <link rel="icon" href="../css/favIconSite.ico" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
-    <title>TP3</title>
+    <title>TP n°3</title>
 </head>
 
 <body class="animate__animated animate__fadeIn">
-    <div class="generalPoints col-3 col-s-12">
-        <div class="createPoints">
+    <div class="curveManagementLeft col-3 col-s-6">
+        <div class="manageDegree curveManagementStyle">
+            Modifier le degré de la courbe :
+            <br>
+            <input type="text" id="curveDegree">
+            <br>
+            <button id="confirmCurvDegree">Valider</button>
+        </div>
+        <div class="createPoints curveManagementStyle">
             <div class="allHtmlCreatePoints">
                 Ajouter des points :
                 <br>
@@ -35,10 +42,25 @@
             </table>
         </div>
     </div>
+    <div class="curveManagementRight col-3 col-s-6">
+        <div class="manageKnotVector curveManagementStyle">
+            Modifier le vecteur de noeud de la courbe :
+            <br>
+            <div class="inputKnotVectorDiv">
+                <input type="text" class="knotVectorInput">
+                <br>
+                <input type="text" class="knotVectorInput">
+                <br>
+                <input type="text" class="knotVectorInput">
+            </div>
+            <br>
+            <button id="confirmKnotVector">Valider</button>
+        </div>
+    </div>
 </body>
 <script src="../js/three.js"></script>
 <script src="../js/points.js"></script>
-<script src="../js/bezier.js"></script>
+<script src="../js/bspline.js"></script>
 <script src="../js/createExemple.js"></script>
 
 </html>
