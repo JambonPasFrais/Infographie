@@ -35,187 +35,57 @@ const material2 = new THREE.MeshBasicMaterial({
                      //degré -> vérifier que m est possible
 
 /*Afin de bien redéfinir la scène chaque fois que la figure change nous avons décidé de mettre de base une courbe de bézier ainsi que quelques points de contrôles qui seront enlévés et remplacés par d'autres dès que l'utilisateur ajoute un point de contrôle*/
-let vector3ArrayBasic = [];
+let spiral = [];
 
-/**** coordonnées de face ****/
+/**** coordonnées spirale ****/
 
-/*for (let i = 0; i < 44; i+= 0.01){
-    if (i <= 1){
-        vector3ArrayBasic.push(new THREE.Vector3(0, i, 0));
-        vector3ArrayBasic.push(new THREE.Vector3(11.5, i, 0));
-        vector3ArrayBasic.push(new THREE.Vector3(11.5, i, -4));
-        vector3ArrayBasic.push(new THREE.Vector3(-11.5, i, -4));
-        vector3ArrayBasic.push(new THREE.Vector3(-11.5, i, 0));
-        vector3ArrayBasic.push(new THREE.Vector3(0, i, 0));
-    }
-    else if (i <= 2){
-        vector3ArrayBasic.push(new THREE.Vector3(0, i, 0));
-        vector3ArrayBasic.push(new THREE.Vector3(15.5, i, 0));
-        vector3ArrayBasic.push(new THREE.Vector3(15.5, i, -4));
-        vector3ArrayBasic.push(new THREE.Vector3(-15.5, i, -4));
-        vector3ArrayBasic.push(new THREE.Vector3(-15.5, i, 0));
-        vector3ArrayBasic.push(new THREE.Vector3(0, i, 0));
+spiral.push(new THREE.Vector3(0, 0, 6.5));
+spiral.push(new THREE.Vector3(10, 0, 6.2));
+spiral.push(new THREE.Vector3(15, 0.3, 5));
+spiral.push(new THREE.Vector3(18.1, 0.9, 0));
+spiral.push(new THREE.Vector3(15, 0.3, -5));
+spiral.push(new THREE.Vector3(10, 0, -6.7));
+spiral.push(new THREE.Vector3(0, 0, -6.7));
+spiral.push(new THREE.Vector3(-10, 0, -6.4));
+spiral.push(new THREE.Vector3(-15, 0.3, -5));
+spiral.push(new THREE.Vector3(-18.7, 0.9, 0));
+spiral.push(new THREE.Vector3(-15, 0.3, 5));
+spiral.push(new THREE.Vector3(-10, 0, 6.5));
+spiral.push(new THREE.Vector3(0, 0, 6.5));
 
-    }
-    else if (i <= 5){
-        vector3ArrayBasic.push(new THREE.Vector3(0, i, 0));
-        vector3ArrayBasic.push(new THREE.Vector3(17.5, i, 0));
-        vector3ArrayBasic.push(new THREE.Vector3(17.5, i, -4));
-        vector3ArrayBasic.push(new THREE.Vector3(-17.5, i, -4));
-        vector3ArrayBasic.push(new THREE.Vector3(-17.5, i, 0));
-        vector3ArrayBasic.push(new THREE.Vector3(0, i, 0));
-    }
-    else if (i <= 7){
-        vector3ArrayBasic.push(new THREE.Vector3(0, i, 0));
-        vector3ArrayBasic.push(new THREE.Vector3(18.5, i, 0));
-        vector3ArrayBasic.push(new THREE.Vector3(18.5, i, -4));
-        vector3ArrayBasic.push(new THREE.Vector3(-18.5, i, -4));
-        vector3ArrayBasic.push(new THREE.Vector3(-18.5, i, 0));
-        vector3ArrayBasic.push(new THREE.Vector3(0, i, 0));
-    }
-    else if (i <= 14){
-        vector3ArrayBasic.push(new THREE.Vector3(0, i, 0));
-        vector3ArrayBasic.push(new THREE.Vector3(19.5, i, 0));
-        vector3ArrayBasic.push(new THREE.Vector3(19.5, i, -4));
-        vector3ArrayBasic.push(new THREE.Vector3(-19.5, i, -4));
-        vector3ArrayBasic.push(new THREE.Vector3(-19.5, i, 0));
-        vector3ArrayBasic.push(new THREE.Vector3(0, i, 0));
-    }
-    else if (i <= 20){
-        vector3ArrayBasic.push(new THREE.Vector3(0, i, 0));
-        vector3ArrayBasic.push(new THREE.Vector3(19, i, 0));
-        vector3ArrayBasic.push(new THREE.Vector3(19, i, -4));
-        vector3ArrayBasic.push(new THREE.Vector3(-19, i, -4));
-        vector3ArrayBasic.push(new THREE.Vector3(-19, i, 0));
-        vector3ArrayBasic.push(new THREE.Vector3(0, i, 0));
-    }
-    else if (i <= 22){
-        vector3ArrayBasic.push(new THREE.Vector3(0, i, 0));
-        vector3ArrayBasic.push(new THREE.Vector3(18.5, i, 0));
-        vector3ArrayBasic.push(new THREE.Vector3(18.5, i, -4));
-        vector3ArrayBasic.push(new THREE.Vector3(-18.5, i, -4));
-        vector3ArrayBasic.push(new THREE.Vector3(-18.5, i, 0));
-        vector3ArrayBasic.push(new THREE.Vector3(0, i, 0));
-    }
-    else if (i <= 28){
-        vector3ArrayBasic.push(new THREE.Vector3(0, i, 0));
-        vector3ArrayBasic.push(new THREE.Vector3(14.5, i, 0));
-        vector3ArrayBasic.push(new THREE.Vector3(14.5, i, -4));
-        vector3ArrayBasic.push(new THREE.Vector3(-14.5, i, -4));
-        vector3ArrayBasic.push(new THREE.Vector3(-14.5, i, 0));
-        vector3ArrayBasic.push(new THREE.Vector3(0, i, 0));
-    }
-    else if (i <= 32){
-        vector3ArrayBasic.push(new THREE.Vector3(0, i, 0));
-        vector3ArrayBasic.push(new THREE.Vector3(9.5, i, 0));
-        vector3ArrayBasic.push(new THREE.Vector3(9.5, i, -4));
-        vector3ArrayBasic.push(new THREE.Vector3(-9.5, i, -4));
-        vector3ArrayBasic.push(new THREE.Vector3(-9.5, i, 0));
-        vector3ArrayBasic.push(new THREE.Vector3(0, i, 0));
-    }
-    else if (i <= 35){
-        vector3ArrayBasic.push(new THREE.Vector3(0, i, 0));
-        vector3ArrayBasic.push(new THREE.Vector3(5.5, i, 0));
-        vector3ArrayBasic.push(new THREE.Vector3(5.5, i, -4));
-        vector3ArrayBasic.push(new THREE.Vector3(-5.5, i, -4));
-        vector3ArrayBasic.push(new THREE.Vector3(-5.5, i, 0));
-        vector3ArrayBasic.push(new THREE.Vector3(0, i, 0));
-    }
-    else if (i <= 37){
-        vector3ArrayBasic.push(new THREE.Vector3(0, i, 0));
-        vector3ArrayBasic.push(new THREE.Vector3(3.5, i, 0));
-        vector3ArrayBasic.push(new THREE.Vector3(3.5, i, -4));
-        vector3ArrayBasic.push(new THREE.Vector3(-3.5, i, -4));
-        vector3ArrayBasic.push(new THREE.Vector3(-3.5, i, 0));
-        vector3ArrayBasic.push(new THREE.Vector3(0, i, 0));
-    }
-    else if (i <= 40){
-        vector3ArrayBasic.push(new THREE.Vector3(0, i, 0));
-        vector3ArrayBasic.push(new THREE.Vector3(2.5, i, 0));
-        vector3ArrayBasic.push(new THREE.Vector3(2.5, i, -4));
-        vector3ArrayBasic.push(new THREE.Vector3(-4.5, i, -4));
-        vector3ArrayBasic.push(new THREE.Vector3(-4.5, i, 0));
-        vector3ArrayBasic.push(new THREE.Vector3(0, i, 0));
-    }
-    else if (i <= 49){
-        vector3ArrayBasic.push(new THREE.Vector3(0, i, 0));
-        vector3ArrayBasic.push(new THREE.Vector3(2.5, i, 0));
-        vector3ArrayBasic.push(new THREE.Vector3(2.5, i, -4));
-        vector3ArrayBasic.push(new THREE.Vector3(-4.5, i, -4));
-        vector3ArrayBasic.push(new THREE.Vector3(-4.5, i, 0));
-        vector3ArrayBasic.push(new THREE.Vector3(0, i, 0));   
-    }
-}*/
+//début de la montée
 
-vector3ArrayBasic.push(new THREE.Vector3(0, 0, 0));
-vector3ArrayBasic.push(new THREE.Vector3(11.5, 0, 0));
-vector3ArrayBasic.push(new THREE.Vector3(15.5, 2, 0));
-vector3ArrayBasic.push(new THREE.Vector3(17.5, 5, 0));
-vector3ArrayBasic.push(new THREE.Vector3(18.5, 7, 0));
-vector3ArrayBasic.push(new THREE.Vector3(19.5, 14, 0));
-vector3ArrayBasic.push(new THREE.Vector3(19, 20, 0));
-vector3ArrayBasic.push(new THREE.Vector3(18.5, 22, 0));
-vector3ArrayBasic.push(new THREE.Vector3(14.5, 28, 0));
-vector3ArrayBasic.push(new THREE.Vector3(9.5, 32, 0));
-vector3ArrayBasic.push(new THREE.Vector3(5.5, 35, 0));
-vector3ArrayBasic.push(new THREE.Vector3(3.5, 37, 0));
-vector3ArrayBasic.push(new THREE.Vector3(2.5, 40, 0));
-vector3ArrayBasic.push(new THREE.Vector3(1, 49, 0));
+spiral.push(new THREE.Vector3(18.5, 2.5, 0));
+spiral.push(new THREE.Vector3(0, 5, 10));
+spiral.push(new THREE.Vector3(-22.5, 7.5, 0));
+spiral.push(new THREE.Vector3(0, 10, -9.7));
+spiral.push(new THREE.Vector3(22.9, 12.5, 0));
+spiral.push(new THREE.Vector3(0, 15, 9.8));
+spiral.push(new THREE.Vector3(-23.2, 17.5, 0));
+spiral.push(new THREE.Vector3(0, 20, -9.8));
+spiral.push(new THREE.Vector3(22.7, 22.5, 0));
+spiral.push(new THREE.Vector3(0, 25, 9.1));
+spiral.push(new THREE.Vector3(-17.7, 27.5, 0));
+spiral.push(new THREE.Vector3(0, 30, -8.3));
+spiral.push(new THREE.Vector3(10.5, 32.5, 0));
+spiral.push(new THREE.Vector3(0, 35, 6.6));
+spiral.push(new THREE.Vector3(-4.6, 37.5, 0));
+spiral.push(new THREE.Vector3(0, 40, -3.7));
+spiral.push(new THREE.Vector3(3.1, 42.5, 0));
+spiral.push(new THREE.Vector3(0, 45, 3.3));
+spiral.push(new THREE.Vector3(-3.2, 47.5, 0));
+spiral.push(new THREE.Vector3(0, 49.7, -3));
 
-vector3ArrayBasic.push(new THREE.Vector3(-1, 49, 0));
-vector3ArrayBasic.push(new THREE.Vector3(-2.5, 40, 0));
-vector3ArrayBasic.push(new THREE.Vector3(-3.5, 37, 0));
-vector3ArrayBasic.push(new THREE.Vector3(-5.5, 35, 0));
-vector3ArrayBasic.push(new THREE.Vector3(-9.5, 32, 0));
-vector3ArrayBasic.push(new THREE.Vector3(-14.5, 28, 0));
-vector3ArrayBasic.push(new THREE.Vector3(-18.5, 22, 0));
-vector3ArrayBasic.push(new THREE.Vector3(-19, 20, 0));
-vector3ArrayBasic.push(new THREE.Vector3(-19.5, 14, 0));
-vector3ArrayBasic.push(new THREE.Vector3(-18.5, 7, 0));
-vector3ArrayBasic.push(new THREE.Vector3(-17.5, 5, 0));
-vector3ArrayBasic.push(new THREE.Vector3(-15.5, 2, 0));
-vector3ArrayBasic.push(new THREE.Vector3(-11.5, 0, 0));
-vector3ArrayBasic.push(new THREE.Vector3(0, 0, 0));
 
 /**** coordonnées de derrière ****/
-
-vector3ArrayBasic.push(new THREE.Vector3(0, 0, -4));
-vector3ArrayBasic.push(new THREE.Vector3(11.5, 0, -4));
-vector3ArrayBasic.push(new THREE.Vector3(15.5, 2, -4));
-vector3ArrayBasic.push(new THREE.Vector3(17.5, 5, -4));
-vector3ArrayBasic.push(new THREE.Vector3(18.5, 7, -4));
-vector3ArrayBasic.push(new THREE.Vector3(19.5, 14, -4));
-vector3ArrayBasic.push(new THREE.Vector3(19, 20, -4));
-vector3ArrayBasic.push(new THREE.Vector3(18.5, 22, -4));
-vector3ArrayBasic.push(new THREE.Vector3(14.5, 28, -4));
-vector3ArrayBasic.push(new THREE.Vector3(9.5, 32, -4));
-vector3ArrayBasic.push(new THREE.Vector3(5.5, 35, -4));
-vector3ArrayBasic.push(new THREE.Vector3(3.5, 37, -4));
-vector3ArrayBasic.push(new THREE.Vector3(2.5, 40, -4));
-vector3ArrayBasic.push(new THREE.Vector3(1, 49, -4));
-
-vector3ArrayBasic.push(new THREE.Vector3(-1, 49, -4));
-vector3ArrayBasic.push(new THREE.Vector3(-2.5, 40, -4));
-vector3ArrayBasic.push(new THREE.Vector3(-3.5, 37, -4));
-vector3ArrayBasic.push(new THREE.Vector3(-5.5, 35, -4));
-vector3ArrayBasic.push(new THREE.Vector3(-9.5, 32, -4));
-vector3ArrayBasic.push(new THREE.Vector3(-14.5, 28, -4));
-vector3ArrayBasic.push(new THREE.Vector3(-18.5, 22, -4));
-vector3ArrayBasic.push(new THREE.Vector3(-19, 20, -4));
-vector3ArrayBasic.push(new THREE.Vector3(-19.5, 14, -4));
-vector3ArrayBasic.push(new THREE.Vector3(-18.5, 7, -4));
-vector3ArrayBasic.push(new THREE.Vector3(-17.5, 5, -4));
-vector3ArrayBasic.push(new THREE.Vector3(-15.5, 2, -4));
-vector3ArrayBasic.push(new THREE.Vector3(-11.5, 0, -4));
-vector3ArrayBasic.push(new THREE.Vector3(0, 0, -4));
 
 camera.position.setZ(20);
 camera.rotation.y = 1.6;
 camera.position.z = 100;
 
 /**** Création des courbes ****/
-createPolygon(vector3ArrayBasic);
-createBezierCurve(vector3ArrayBasic);
+createPolygon(spiral);
+createBezierCurve(spiral);
 //createBspline(vector3ArrayBasic, m, vectorN);
 
 /*Création du décors */
