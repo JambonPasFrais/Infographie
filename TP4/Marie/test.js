@@ -32,37 +32,57 @@ const material2 = new THREE.MeshBasicMaterial({
 
 /**** new ****/
 
-//degré -> vérifier que m est possible
+let floor1 = [];
+let floor2 = [];
 
-/*Afin de bien redéfinir la scène chaque fois que la figure change nous avons décidé de mettre de base une courbe de bézier ainsi que quelques points de contrôles qui seront enlévés et remplacés par d'autres dès que l'utilisateur ajoute un point de contrôle*/
-let spiral = [];
+/**** coordonnées floor1 ****/
 
-/**** coordonnées spirale ****/
+floor1.push(new THREE.Vector3(-18.7, 0.9, 0));
+floor1.push(new THREE.Vector3(-11.5, 0.2, 6.5));
+floor1.push(new THREE.Vector3(11.5, 0.1, 6.2));
+floor1.push(new THREE.Vector3(18, 0.9, 0));
+floor1.push(new THREE.Vector3(11.5, 0.1, -6.5));
+floor1.push(new THREE.Vector3(-11.5, 0.2, -6.3));
+floor1.push(new THREE.Vector3(-18.7, 0.9, 0));
 
-spiral.push(new THREE.Vector3(0,0,-1));
-spiral.push(new THREE.Vector3(0,5,-3));
-spiral.push(new THREE.Vector3(2.5,5,-3));
-spiral.push(new THREE.Vector3(2.5,0,-1));
+/**** coordonnées floor2 ****/
 
-spiral.push(new THREE.Vector3(0,0,1));
-spiral.push(new THREE.Vector3(0,5,3));
-spiral.push(new THREE.Vector3(2.5,5,3));
-spiral.push(new THREE.Vector3(2.5,0,1));
+floor2.push(new THREE.Vector3(22.3, 10, 0));
+floor2.push(new THREE.Vector3(18, 10, -1));
+floor2.push(new THREE.Vector3(11.5, 10, -9.7));
+floor2.push(new THREE.Vector3(-11.5, 10, -9.7));
+floor2.push(new THREE.Vector3(-18.7, 10, -1));
+floor2.push(new THREE.Vector3(-23, 10, 0));
+floor2.push(new THREE.Vector3(-18.7, 10, 1));
+floor2.push(new THREE.Vector3(-11.5, 10, 10));
+floor2.push(new THREE.Vector3(11.5, 10, 10));
+floor2.push(new THREE.Vector3(18, 10, 1));
 
-/**** coordonnées de derrière ****/
+floor2.push(new THREE.Vector3(18, 0.9, 0));
+floor2.push(new THREE.Vector3(11.5, 0.1, -6.5));
+floor2.push(new THREE.Vector3(-11.5, 0.2, -6.3));
+floor2.push(new THREE.Vector3(-18.7, 0.9, 0));
+floor2.push(new THREE.Vector3(-11.5, 0.2, 6.5));
+floor2.push(new THREE.Vector3(11.5, 0.1, 6.2));
+floor2.push(new THREE.Vector3(18, 0.9, 0));
 
 camera.position.setZ(20);
 camera.rotation.y = 1.6;
 camera.position.z = 100;
 
 /**** Création des courbes ****/
-createPolygon([spiral[0],spiral[1],spiral[2]]);
-createPolygon([spiral[2],spiral[3],spiral[0]]);
 
-createPolygon([spiral[4],spiral[5],spiral[6]]);
-createPolygon([spiral[6],spiral[7],spiral[4]]);
-//createBezierCurve(spiral);
-//createBspline(vector3ArrayBasic, m, vectorN);
+for(let i = 0; i < floor1.length - 1; i+=1){
+    createPolygon([floor1[i],floor1[i+1],floor1[floor1.length-i-1]]);
+}
+createBezierCurve(floor1);
+let vectorN1 = [0,1,2,3,4,5,6,7,8,9,10];
+//vectorN = [t0, ..., t(m+nb points)]
+createBspline(floor1, 3, vectorN1);
+
+/*for(let i = 0; i < floor2.length - 1; i+=1){
+    createPolygon([floor2[i],floor2[i+1],floor2[floor2.length-i-1]]);
+}*/
 
 /*Création du décors */
 
@@ -88,7 +108,7 @@ function createPolygon(tabOfPoints) {
 
     //geometry.computeVertexNormals();
     //Utilisation de cette géométrie ainsi que le matériel pour créer le tracé du polygone de contrôle
-    let material = new THREE.MeshBasicMaterial({color: 0x97d9d3, side: THREE.DoubleSide });
+    let material = new THREE.MeshBasicMaterial({color: 0x737373, side: THREE.DoubleSide });
     material.opacity = 1;
     let mesh = new THREE.Mesh(geometry, material);
     scene.add(mesh);
@@ -100,19 +120,18 @@ function createPolygon(tabOfPoints) {
 function createBezierCurve(tabOfPoints){
     //Calcul de la courbe de Bézier en fonction des points de l'utilisateur
     let pointsBezier = bezierCurve(tabOfPoints);
+    for(let i = 0; i < pointsBezier.length - 1; i+=1){
+        let geometry = new THREE.BufferGeometry().setFromPoints([pointsBezier[i],pointsBezier[i+1],pointsBezier[pointsBezier.length-i-1]]);
+        //Utilisation de cette géométrie ainsi que le matériel pour créer le tracé de la courbe de Bézier
+        let material = new THREE.MeshBasicMaterial({color: 0x97d9d3, side: THREE.DoubleSide });
+        material.opacity = 1;
+        let mesh = new THREE.Mesh(geometry, material);
+        scene.add(mesh);
+    }
     //console.log(pointsBezier);
     //Création d'une "géométrie" pour la courbe de Bézier
-    let geometry = new THREE.BufferGeometry().setFromPoints(pointsBezier);
 
-    geometry.computeVertexNormals();
-
-    //tubeGeometry
-    //Utilisation de cette géométrie ainsi que le matériel pour créer le tracé du polygone de contrôle
-
-    let material2 = new THREE.MeshBasicMaterial({color: 0xF3AAE2});
-    let mesh = new THREE.Mesh(geometry, material2);
-    scene.add(mesh);
-    return mesh;
+    return 1;
 }
 
 //Création de la fonction factorielle
@@ -159,13 +178,15 @@ function createBspline(tabOfPoints, degre, knots){
     //Calcul de la courbe B-SPLINE en fonction des points de l'utilisateur
     let pointsSpline = Bspline(tabOfPoints, degre, knots);
     //Création d'une "géométrie" pour la courbe
-    let geometry = new THREE.BufferGeometry().setFromPoints(pointsSpline);
-    //Utilisation de cette géométrie ainsi que le matériel pour créer le tracé de la courbe
-    let curve = new THREE.Line(geometry, material2);
-    curve.name = "courbeDeSpline"
-    //Ajout du tracé à la scène
-    scene.add(curve);
-    return curve;
+    for(let i = 0; i < pointsSpline.length - 1; i+=1){
+        let geometry = new THREE.BufferGeometry().setFromPoints([pointsSpline[i],pointsSpline[i+1],pointsSpline[pointsSpline.length-i-1]]);
+        //Utilisation de cette géométrie ainsi que le matériel pour créer le tracé de la courbe de Bézier
+        let material = new THREE.MeshBasicMaterial({color: 'yellow', side: THREE.DoubleSide });
+        material.opacity = 1;
+        let mesh = new THREE.Mesh(geometry, material);
+        scene.add(mesh);
+    }
+    return 1;
 }
 
 //Création de la fonction qui s'occupe de la courbe B spline
