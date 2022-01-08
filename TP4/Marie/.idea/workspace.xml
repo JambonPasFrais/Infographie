@@ -20,12 +20,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="298070cc-865b-4329-89f3-8c6ec14fa052" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/bezier.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bspline.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/polygon.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bezier.js" beforeDir="false" afterPath="$PROJECT_DIR$/bezier.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test.js" beforeDir="false" afterPath="$PROJECT_DIR$/test.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -65,7 +62,7 @@
       <workItem from="1641234532554" duration="2976000" />
       <workItem from="1641545721868" duration="12639000" />
       <workItem from="1641593809007" duration="5793000" />
-      <workItem from="1641662567160" duration="6804000" />
+      <workItem from="1641662567160" duration="7124000" />
     </task>
     <servers />
   </component>

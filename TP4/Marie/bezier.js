@@ -32,48 +32,251 @@ const material2 = new THREE.MeshBasicMaterial({
 
 /**** new ****/
 
-let floor1 = [];
-let floor2 = [];
-let floor2der = [];
+let floor0 = [];
+let floor10 = [];
+let floor10der = [];
+let floor20 = [];
+let floor20der = [];
+let floor30 = [];
+let floor30der = [];
+let floor36 = [];
+let floor36der = [];
+let floor40 = [];
+let floor40der = [];
+let floor45 = [];
+let floor45der = [];
+let floor50 = [];
+let floor50der = [];
+let finalfloor = [];
 
-/**** coordonnées floor1 ****/
+/**** coordonnées floor0 ****/
 
-floor1.push(new THREE.Vector3(-18.7, 0.9, 0));
-floor1.push(new THREE.Vector3(-11.5, 0.2, 6.5));
-floor1.push(new THREE.Vector3(11.5, 0.1, 6.2));
-floor1.push(new THREE.Vector3(18, 0.9, 0));
-floor1.push(new THREE.Vector3(11.5, 0.1, -6.5));
-floor1.push(new THREE.Vector3(-11.5, 0.2, -6.3));
-floor1.push(new THREE.Vector3(-18.7, 0.9, 0));
+floor0.push(new THREE.Vector3(-18.7, 0.9, 0));
+floor0.push(new THREE.Vector3(-11.5, 0.2, 6.5));
+floor0.push(new THREE.Vector3(11.5, 0.1, 6.2));
+floor0.push(new THREE.Vector3(18, 0.9, 0));
+floor0.push(new THREE.Vector3(11.5, 0.1, -6.5));
+floor0.push(new THREE.Vector3(-11.5, 0.2, -6.3));
+floor0.push(new THREE.Vector3(-18.7, 0.9, 0));
 
-/**** coordonnées floor2 face avant et arrière ****/
+/**** coordonnées floor10 face avant et arrière ****/
 
-floor2.push(new THREE.Vector3(22.3, 10, 0));
-floor2.push(new THREE.Vector3(18, 10, 4));
-floor2.push(new THREE.Vector3(11.5, 10, 10));
-floor2.push(new THREE.Vector3(-11.5, 10, 10));
-floor2.push(new THREE.Vector3(-18.7, 10, 4));
-floor2.push(new THREE.Vector3(-23, 10, 0));
+floor10.push(new THREE.Vector3(22.3, 10, 0));
+floor10.push(new THREE.Vector3(18, 10, 4));
+floor10.push(new THREE.Vector3(11.5, 10, 10));
+floor10.push(new THREE.Vector3(-11.5, 10, 10));
+floor10.push(new THREE.Vector3(-18.7, 10, 4));
+floor10.push(new THREE.Vector3(-23, 10, 0));
 
-floor2.push(new THREE.Vector3(-18.7, 0.9, 0));
-floor2.push(new THREE.Vector3(-11.5, 0.2, 6.5));
-floor2.push(new THREE.Vector3(11.5, 0.1, 6.2));
-floor2.push(new THREE.Vector3(18, 0.9, 0));
+floor10.push(new THREE.Vector3(-18.7, 0.9, 0));
+floor10.push(new THREE.Vector3(-11.5, 0.2, 6.5));
+floor10.push(new THREE.Vector3(11.5, 0.1, 6.2));
+floor10.push(new THREE.Vector3(18, 0.9, 0));
 
-floor2der.push(new THREE.Vector3(22.3, 10, 0));
-floor2der.push(new THREE.Vector3(18, 10, -4));
-floor2der.push(new THREE.Vector3(11.5, 10, -10));
-floor2der.push(new THREE.Vector3(-11.5, 10, -10));
-floor2der.push(new THREE.Vector3(-18.7, 10, -4));
-floor2der.push(new THREE.Vector3(-23, 10, 0));
+floor10der.push(new THREE.Vector3(22.3, 10, 0));
+floor10der.push(new THREE.Vector3(18, 10, -4));
+floor10der.push(new THREE.Vector3(11.5, 10, -9.7));
+floor10der.push(new THREE.Vector3(-11.5, 10, -9.7));
+floor10der.push(new THREE.Vector3(-18.7, 10, -4));
+floor10der.push(new THREE.Vector3(-23, 10, 0));
 
-floor2der.push(new THREE.Vector3(-18.7, 0.9, 0));
-floor2der.push(new THREE.Vector3(-11.5, 0.2, -6.5));
-floor2der.push(new THREE.Vector3(11.5, 0.1, -6.2));
-floor2der.push(new THREE.Vector3(18, 0.9, 0));
+floor10der.push(new THREE.Vector3(-18.7, 0.9, 0));
+floor10der.push(new THREE.Vector3(-11.5, 0.2, -6.5));
+floor10der.push(new THREE.Vector3(11.5, 0.1, -6.3));
+floor10der.push(new THREE.Vector3(18, 0.9, 0));
 
-/**** coordonnées floor3 face avant et arrière ****/
+/**** coordonnées floor20 face avant et arrière ****/
 
+floor20.push(new THREE.Vector3(-22.7, 20, 0));
+floor20.push(new THREE.Vector3(-18.7, 20, 4));
+floor20.push(new THREE.Vector3(-11.5, 20, 9.5));
+floor20.push(new THREE.Vector3(11.5, 20, 9.5));
+floor20.push(new THREE.Vector3(18.7, 20, 4));
+floor20.push(new THREE.Vector3(22.3, 20, 0));
+
+floor20.push(new THREE.Vector3(22.3, 10, 0));
+floor20.push(new THREE.Vector3(18, 10, 4));
+floor20.push(new THREE.Vector3(11.5, 10, 10));
+floor20.push(new THREE.Vector3(-11.5, 10, 10));
+floor20.push(new THREE.Vector3(-18.7, 10, 4));
+floor20.push(new THREE.Vector3(-23, 10, 0));
+
+floor20der.push(new THREE.Vector3(-22.7, 20, 0));
+floor20der.push(new THREE.Vector3(-18.7, 20, -4));
+floor20der.push(new THREE.Vector3(-11.5, 20, -9.5));
+floor20der.push(new THREE.Vector3(11.5, 20, -9.5));
+floor20der.push(new THREE.Vector3(18.7, 20, -4));
+floor20der.push(new THREE.Vector3(22.3, 20, 0));
+
+floor20der.push(new THREE.Vector3(22.3, 10, 0));
+floor20der.push(new THREE.Vector3(18, 10, -4));
+floor20der.push(new THREE.Vector3(11.5, 10, -9.7));
+floor20der.push(new THREE.Vector3(-11.5, 10, -9.7));
+floor20der.push(new THREE.Vector3(-18.7, 10, -4));
+floor20der.push(new THREE.Vector3(-23, 10, 0));
+
+/**** coordonnées floor30 face avant et arrière ****/
+
+floor30.push(new THREE.Vector3(14,30,0));
+floor30.push(new THREE.Vector3(11.5,30,4));
+floor30.push(new THREE.Vector3(6.5,30,8.3));
+floor30.push(new THREE.Vector3(-6.5,30,8.3));
+floor30.push(new THREE.Vector3(-11.5,30,4));
+floor30.push(new THREE.Vector3(-14.5,30,0));
+
+floor30.push(new THREE.Vector3(-22.7, 20, 0));
+floor30.push(new THREE.Vector3(-18.7, 20, 4));
+floor30.push(new THREE.Vector3(-11.5, 20, 9.5));
+floor30.push(new THREE.Vector3(11.5, 20, 9.5));
+floor30.push(new THREE.Vector3(18.7, 20, 4));
+floor30.push(new THREE.Vector3(22.3, 20, 0));
+
+floor30der.push(new THREE.Vector3(14,30,0));
+floor30der.push(new THREE.Vector3(11.5,30,-4));
+floor30der.push(new THREE.Vector3(6.5,30,-8.3));
+floor30der.push(new THREE.Vector3(-6.5,30,-8.3));
+floor30der.push(new THREE.Vector3(-11.5,30,-4));
+floor30der.push(new THREE.Vector3(-14.5,30,0));
+
+floor30der.push(new THREE.Vector3(-22.7, 20, 0));
+floor30der.push(new THREE.Vector3(-18.7, 20, -4));
+floor30der.push(new THREE.Vector3(-11.5, 20, -9.5));
+floor30der.push(new THREE.Vector3(11.5, 20, -9.5));
+floor30der.push(new THREE.Vector3(18.7, 20, -4));
+floor30der.push(new THREE.Vector3(22.3, 20, 0));
+
+/**** coordonnées floor36 face avant et arrière ****/
+
+floor36.push(new THREE.Vector3(-6,36,0));
+floor36.push(new THREE.Vector3(-4,36,4));
+floor36.push(new THREE.Vector3(-0.5,36,5));
+floor36.push(new THREE.Vector3(0.5,36,5));
+floor36.push(new THREE.Vector3(3.5,36,4));
+floor36.push(new THREE.Vector3(5,36,0));
+
+floor36.push(new THREE.Vector3(14,30,0));
+floor36.push(new THREE.Vector3(11.5,30,4));
+floor36.push(new THREE.Vector3(6.5,30,8.3));
+floor36.push(new THREE.Vector3(-6.5,30,8.3));
+floor36.push(new THREE.Vector3(-11.5,30,4));
+floor36.push(new THREE.Vector3(-14.5,30,0));
+
+floor36der.push(new THREE.Vector3(-6,36,0));
+floor36der.push(new THREE.Vector3(-4,36,-4));
+floor36der.push(new THREE.Vector3(-0.5,36,-5));
+floor36der.push(new THREE.Vector3(0.5,36,-5));
+floor36der.push(new THREE.Vector3(3.5,36,-4));
+floor36der.push(new THREE.Vector3(5,36,0));
+
+floor36der.push(new THREE.Vector3(14,30,0));
+floor36der.push(new THREE.Vector3(11.5,30,-4));
+floor36der.push(new THREE.Vector3(6.5,30,-8.3));
+floor36der.push(new THREE.Vector3(-6.5,30,-8.3));
+floor36der.push(new THREE.Vector3(-11.5,30,-4));
+floor36der.push(new THREE.Vector3(-14.5,30,0));
+
+/**** coordonnées floor40 face avant et arrière ****/
+
+floor40.push(new THREE.Vector3(3.1,40,0));
+floor40.push(new THREE.Vector3(2.1,40,2.5));
+floor40.push(new THREE.Vector3(0.5,40,3.3));
+floor40.push(new THREE.Vector3(-0.5,40,3.3));
+floor40.push(new THREE.Vector3(-2.5,40,2.5));
+floor40.push(new THREE.Vector3(-4,40,0));
+
+floor40.push(new THREE.Vector3(-6,36,0));
+floor40.push(new THREE.Vector3(-4,36,4));
+floor40.push(new THREE.Vector3(-0.5,36,5));
+floor40.push(new THREE.Vector3(0.5,36,5));
+floor40.push(new THREE.Vector3(3.5,36,4));
+floor40.push(new THREE.Vector3(5,36,0));
+
+floor40der.push(new THREE.Vector3(3.1,40,0));
+floor40der.push(new THREE.Vector3(2.1,40,-2.5));
+floor40der.push(new THREE.Vector3(0.5,40,-3.3));
+floor40der.push(new THREE.Vector3(-0.5,40,-3.3));
+floor40der.push(new THREE.Vector3(-2.5,40,-2.5));
+floor40der.push(new THREE.Vector3(-4,40,0));
+
+floor40der.push(new THREE.Vector3(-6,36,0));
+floor40der.push(new THREE.Vector3(-4,36,-4));
+floor40der.push(new THREE.Vector3(-0.5,36,-5));
+floor40der.push(new THREE.Vector3(0.5,36,-5));
+floor40der.push(new THREE.Vector3(3.5,36,-4));
+floor40der.push(new THREE.Vector3(5,36,0));
+
+/**** coordonnées floor45 face avant et arrière ****/
+
+floor45.push(new THREE.Vector3(-3.2,45,0));
+floor45.push(new THREE.Vector3(-2,45.3,2));
+floor45.push(new THREE.Vector3(-0.5,45.5,3));
+floor45.push(new THREE.Vector3(0.5,45.5,3));
+floor45.push(new THREE.Vector3(2,45.3,2));
+floor45.push(new THREE.Vector3(3.1,45,0));
+
+floor45.push(new THREE.Vector3(3.1,40,0));
+floor45.push(new THREE.Vector3(2.1,40,2.5));
+floor45.push(new THREE.Vector3(0.5,40,3.3));
+floor45.push(new THREE.Vector3(-0.5,40,3.3));
+floor45.push(new THREE.Vector3(-2.5,40,2.5));
+floor45.push(new THREE.Vector3(-4,40,0));
+
+floor45der.push(new THREE.Vector3(-3.2,45,0));
+floor45der.push(new THREE.Vector3(-2,45.3,-2));
+floor45der.push(new THREE.Vector3(-0.5,45.5,-3));
+floor45der.push(new THREE.Vector3(0.5,45.5,-3));
+floor45der.push(new THREE.Vector3(2,45.3,-2));
+floor45der.push(new THREE.Vector3(3.1,45,0));
+
+floor45der.push(new THREE.Vector3(3.1,40,0));
+floor45der.push(new THREE.Vector3(2.1,40,-2.5));
+floor45der.push(new THREE.Vector3(0.5,40,-3.3));
+floor45der.push(new THREE.Vector3(-0.5,40,-3.3));
+floor45der.push(new THREE.Vector3(-2.5,40,-2.5));
+floor45der.push(new THREE.Vector3(-4,40,0));
+
+/**** coordonnées floor50 face avant et arrière ****/
+
+floor50.push(new THREE.Vector3(3.1,49.1,0));
+floor50.push(new THREE.Vector3(2,49.3,2));
+floor50.push(new THREE.Vector3(0.5,49.6,3));
+floor50.push(new THREE.Vector3(-0.5,49.7,3));
+floor50.push(new THREE.Vector3(-2,49.8,2));
+floor50.push(new THREE.Vector3(-3.2,49,0));
+
+floor50.push(new THREE.Vector3(-3.2,45,0));
+floor50.push(new THREE.Vector3(-2,45.3,2));
+floor50.push(new THREE.Vector3(-0.5,45.5,3));
+floor50.push(new THREE.Vector3(0.5,45.5,3));
+floor50.push(new THREE.Vector3(2,45.3,2));
+floor50.push(new THREE.Vector3(3.1,45,0));
+
+floor50der.push(new THREE.Vector3(3.1,49.1,0));
+floor50der.push(new THREE.Vector3(2,49.3,-2));
+floor50der.push(new THREE.Vector3(0.5,49.6,-3));
+floor50der.push(new THREE.Vector3(-0.5,49.7,-3));
+floor50der.push(new THREE.Vector3(-2,49.8,-2));
+floor50der.push(new THREE.Vector3(-3.2,49,0));
+
+floor50der.push(new THREE.Vector3(-3.2,45,0));
+floor50der.push(new THREE.Vector3(-2,45.3,-2));
+floor50der.push(new THREE.Vector3(-0.5,45.5,-3));
+floor50der.push(new THREE.Vector3(0.5,45.5,-3));
+floor50der.push(new THREE.Vector3(2,45.3,-2));
+floor50der.push(new THREE.Vector3(3.1,45,0));
+
+/**** coordonnées finalfloor face avant et arrière ****/
+
+finalfloor.push(new THREE.Vector3(-3.2,49,0));
+finalfloor.push(new THREE.Vector3(-2,49.8,2));
+finalfloor.push(new THREE.Vector3(-0.5,49.7,3));
+finalfloor.push(new THREE.Vector3(0.5,49.6,3));
+finalfloor.push(new THREE.Vector3(2,49.3,2));
+finalfloor.push(new THREE.Vector3(3.1,49.1,0));
+finalfloor.push(new THREE.Vector3(2,49.3,-2));
+finalfloor.push(new THREE.Vector3(0.5,49.6,-3));
+finalfloor.push(new THREE.Vector3(-0.5,49.7,-3));
+finalfloor.push(new THREE.Vector3(-2,49.8,-2));
 
 camera.position.setZ(20);
 camera.rotation.y = 1.6;
@@ -81,9 +284,22 @@ camera.position.z = 100;
 
 /**** Création des courbes de Bézier ****/
 
-createBezierCurve(floor1);
-createBezierCurve(floor2);
-createBezierCurve(floor2der);
+createBezierCurve(floor0);
+createBezierCurve(floor10);
+createBezierCurve(floor10der);
+createBezierCurve(floor20);
+createBezierCurve(floor20der);
+createBezierCurve(floor30);
+createBezierCurve(floor30der);
+createBezierCurve(floor36);
+createBezierCurve(floor36der);
+createBezierCurve(floor40);
+createBezierCurve(floor40der);
+createBezierCurve(floor45);
+createBezierCurve(floor45der);
+createBezierCurve(floor50);
+createBezierCurve(floor50der);
+createBezierCurve(finalfloor);
 
 /*Création du décors */
 
@@ -134,7 +350,7 @@ function binomialCoefficient(n, p) {
 function bezierCurve(points) {
     let n = points.length - 1;
     let curvePoints = [];
-    for (let t = 0; t <= 1; t += 0.0001) {
+    for (let t = 0; t <= 1; t += 0.005) {
 
         let p = { x: 0, y: 0, z: 0 } //Création d'un objet, plus facile à manipuler
 
