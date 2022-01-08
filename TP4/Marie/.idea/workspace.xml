@@ -20,7 +20,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="298070cc-865b-4329-89f3-8c6ec14fa052" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/bezier.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bspline.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/polygon.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test.js" beforeDir="false" afterPath="$PROJECT_DIR$/test.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -60,7 +64,8 @@
       <updated>1641234531331</updated>
       <workItem from="1641234532554" duration="2976000" />
       <workItem from="1641545721868" duration="12639000" />
-      <workItem from="1641593809007" duration="5037000" />
+      <workItem from="1641593809007" duration="5793000" />
+      <workItem from="1641662567160" duration="6804000" />
     </task>
     <servers />
   </component>
@@ -78,5 +83,11 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="1920" y="15" width="1144" height="901" key="dock-window-1" timestamp="1641664985287">
+      <screen x="1920" y="0" width="1920" height="1040" />
+    </state>
+    <state x="1920" y="15" width="1144" height="901" key="dock-window-1/0.0.1280.680/1920.0.1920.1040@0.0.1280.680" timestamp="1641664985287" />
   </component>
 </project>

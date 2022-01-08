@@ -34,6 +34,7 @@ const material2 = new THREE.MeshBasicMaterial({
 
 let floor1 = [];
 let floor2 = [];
+let floor2der = [];
 
 /**** coordonnées floor1 ****/
 
@@ -45,47 +46,44 @@ floor1.push(new THREE.Vector3(11.5, 0.1, -6.5));
 floor1.push(new THREE.Vector3(-11.5, 0.2, -6.3));
 floor1.push(new THREE.Vector3(-18.7, 0.9, 0));
 
-/**** coordonnées floor2 ****/
+/**** coordonnées floor2 face avant et arrière ****/
 
 floor2.push(new THREE.Vector3(22.3, 10, 0));
-floor2.push(new THREE.Vector3(18, 10, 2));
+floor2.push(new THREE.Vector3(18, 10, 4));
 floor2.push(new THREE.Vector3(11.5, 10, 10));
 floor2.push(new THREE.Vector3(-11.5, 10, 10));
-floor2.push(new THREE.Vector3(-18.7, 10, -2));
+floor2.push(new THREE.Vector3(-18.7, 10, 4));
 floor2.push(new THREE.Vector3(-23, 10, 0));
-floor2.push(new THREE.Vector3(-18.7, 10, 2));
-floor2.push(new THREE.Vector3(-11.5, 10, -9.7));
-floor2.push(new THREE.Vector3(11.5, 10, -9.7));
-floor2.push(new THREE.Vector3(18, 10, -2));
 
-floor2.push(new THREE.Vector3(18, 0.9, 0));
-floor2.push(new THREE.Vector3(11.5, 0.1, -6.5));
-floor2.push(new THREE.Vector3(-11.5, 0.2, -6.3));
 floor2.push(new THREE.Vector3(-18.7, 0.9, 0));
 floor2.push(new THREE.Vector3(-11.5, 0.2, 6.5));
 floor2.push(new THREE.Vector3(11.5, 0.1, 6.2));
 floor2.push(new THREE.Vector3(18, 0.9, 0));
 
+floor2der.push(new THREE.Vector3(22.3, 10, 0));
+floor2der.push(new THREE.Vector3(18, 10, -4));
+floor2der.push(new THREE.Vector3(11.5, 10, -10));
+floor2der.push(new THREE.Vector3(-11.5, 10, -10));
+floor2der.push(new THREE.Vector3(-18.7, 10, -4));
+floor2der.push(new THREE.Vector3(-23, 10, 0));
+
+floor2der.push(new THREE.Vector3(-18.7, 0.9, 0));
+floor2der.push(new THREE.Vector3(-11.5, 0.2, -6.5));
+floor2der.push(new THREE.Vector3(11.5, 0.1, -6.2));
+floor2der.push(new THREE.Vector3(18, 0.9, 0));
+
+/**** coordonnées floor3 face avant et arrière ****/
+
+
 camera.position.setZ(20);
 camera.rotation.y = 1.6;
 camera.position.z = 100;
 
-/**** Création des courbes ****/
+/**** Création des courbes de Bézier ****/
 
-for(let i = 0; i < floor1.length - 1; i+=1){
-    createPolygon([floor1[i],floor1[i+1],floor1[floor1.length-i-1]]);
-}
 createBezierCurve(floor1);
-let vectorN1 = [0,1,2,3,4,5,6,7,8,9,10];
-//vectorN = [t0, ..., t(m+nb points)]
-createBspline(floor1, 3, vectorN1);
-
-for(let i = 0; i < floor2.length - 1; i+=1){ //un côté de bon
-    createPolygon([floor2[i],floor2[i+1],floor2[floor2.length-i-1]]);
-}
-/*createPolygon([floor2[0],floor2[1],floor2[16]]);
-createPolygon([floor2[1],floor2[15],floor2[16]]);
-createPolygon([floor2[1],floor2[2],floor2[15]]);*/
+createBezierCurve(floor2);
+createBezierCurve(floor2der);
 
 /*Création du décors */
 
@@ -100,23 +98,6 @@ sun.position.y = 50;
 sun.position.z = -100;
 
 scene.add(sun);
-
-
-
-/**** Polygone de Contrôle ****/
-
-function createPolygon(tabOfPoints) {
-    //Création d'une "géométrie" pour le polygone de contrôle
-    let geometry = new THREE.BufferGeometry().setFromPoints(tabOfPoints);
-
-    //geometry.computeVertexNormals();
-    //Utilisation de cette géométrie ainsi que le matériel pour créer le tracé du polygone de contrôle
-    let material = new THREE.MeshBasicMaterial({color: 0x737373, side: THREE.DoubleSide });
-    material.opacity = 1;
-    let mesh = new THREE.Mesh(geometry, material);
-    scene.add(mesh);
-    return mesh;
-}
 
 /**** Courbe de Bézier ****/
 
@@ -175,82 +156,6 @@ function bezierCurve(points) {
     return curvePoints;
 }
 
-/**** Courbe B-SPLINE ****/
-
-function createBspline(tabOfPoints, degre, knots){
-    //Calcul de la courbe B-SPLINE en fonction des points de l'utilisateur
-    let pointsSpline = Bspline(tabOfPoints, degre, knots);
-    //Création d'une "géométrie" pour la courbe
-    for(let i = 0; i < pointsSpline.length - 1; i+=1){
-        let geometry = new THREE.BufferGeometry().setFromPoints([pointsSpline[i],pointsSpline[i+1],pointsSpline[pointsSpline.length-i-1]]);
-        //Utilisation de cette géométrie ainsi que le matériel pour créer le tracé de la courbe de Bézier
-        let material = new THREE.MeshBasicMaterial({color: 'yellow', side: THREE.DoubleSide });
-        material.opacity = 1;
-        let mesh = new THREE.Mesh(geometry, material);
-        scene.add(mesh);
-    }
-    return 1;
-}
-
-//Création de la fonction qui s'occupe de la courbe B spline
-function Bspline(points, degree, knots) {
-    /**** new ****/
-    let n = points.length - 1;
-    let curvePoints = [];
-
-    if (degree < 1){
-        alert("Le degré n'est pas bon");
-        return;
-    }
-    if (degree > (n - 1)){
-        alert("Merci de changer le degré");
-        return;
-    }
-    let vart;
-
-    for (let t = knots[degree]; t <= knots[points.length]; t += 0.1) {
-        //Création d'un objet, plus facile à manipuler
-        ('t = ' + t)
-        let p = {x: 0, y: 0, z: 0}
-        for (let i = 0; i < n + 1; i++) {
-            let px = points[i].x * N(i,degree,knots,t);
-            let py = points[i].y * N(i,degree,knots,t);
-            let pz = points[i].z * N(i,degree,knots,t);
-            //Rentrée des points de la courbes B spline dans l'objet p
-            p.x += px;
-            p.y += py;
-            p.z += pz;
-        }
-        //Rentrée des points de la courbe de Bézier de le tableau adapté
-        curvePoints.push(p);
-    }
-    (curvePoints);
-    return curvePoints;
-}
-
-function N(i,m,knots,t){
-    let res, tmp1, tmp2;
-    if(m == 0){
-        if ((knots[i] <= t) && (t < knots[i + 1])) {
-            res = 1;
-        } else {
-            res = 0;
-        }
-    }
-    else{
-
-        tmp1 = ((t - knots[i]) / (knots[i + m] - knots[i])) * N(i,m-1,knots,t);
-
-        //attention aux noeuds multiples, vérifier que dénominateur différent de 0
-
-        tmp2 = ((knots[i + m + 1] - t) / (knots[i + m + 1] - knots[i+1]))*N(i+1,m-1,knots,t);
-
-        return  tmp1 + tmp2;
-    }
-    return res;
-}
-
-/*Fin précédents TPs */
 
 // Helpers
 
